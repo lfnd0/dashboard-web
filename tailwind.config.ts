@@ -6,9 +6,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        app: '700px',
+      },
       colors: {
         'my-color': '#A9A9A9'
-      }
+      },
     },
   },
   plugins: [],
