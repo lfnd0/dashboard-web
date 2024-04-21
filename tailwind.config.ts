@@ -1,20 +1,15 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    "./src/**/*.tsx",
-  ],
+  content: ['./src/**/*.tsx'],
   theme: {
     extend: {
-      maxWidth: {
-        app: '700px',
-      },
-      colors: {
-        'my-color': '#A9A9A9'
+      gridTemplateColumns: {
+        app: 'minmax(18rem, 20rem) 1fr',
       },
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config
