@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export function Profile() {
   return (
-    <div className="grid-cols-profile grid items-center gap-3">
+    <div className="grid grid-cols-profile items-center gap-3">
       <div className="h-10 w-10">
         <Image
           src="https://github.com/lfnd0.png"
@@ -19,7 +19,7 @@ export function Profile() {
           Luiz Fernando
         </span>
 
-        <span className="trucate text-sm text-zinc-500">
+        <span className="truncate text-sm text-zinc-500">
           luiz-fsilva37@hotmail.com
         </span>
       </div>
