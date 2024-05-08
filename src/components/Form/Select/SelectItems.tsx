@@ -3,7 +3,7 @@
 import * as Select from '@radix-ui/react-select'
 import { Check } from 'lucide-react'
 
-export type SelectItemsProps = Select.SelectItemProps & {
+type SelectItemsProps = Select.SelectItemProps & {
   text: string
 }
 
