@@ -1,21 +1,46 @@
 import { Button } from '@/components/Button'
 import { formatBytes } from '@/utils/format-bytes'
 import { CheckCircle2, Trash2, UploadCloud } from 'lucide-react'
+import { VariantProps, tv } from 'tailwind-variants'
 
-interface FileItemProp {
+const fileItem = tv({
+  slots: {
+    container:
+      'group flex items-start gap-4 rounded-lg border border-zinc-200 p-4',
+    icon: 'rounded-full border-4 border-violet-100 bg-violet-200 p-2 text-violet-600',
+    deleteButton: '',
+  },
+  variants: {
+    state: {
+      progress: {
+        container: '',
+      },
+      complete: {
+        container: 'border-violet-500',
+      },
+      error: {
+        container: 'bg-error-25 border-error-300',
+        icon: 'border-error-50 bg-error-100 text-error-600',
+        deleteButton: 'text-error-700 hover:text-error-900',
+      },
+    },
+  },
+  defaultVariants: {
+    state: 'progress',
+  },
+})
+
+interface FileItemProp extends VariantProps<typeof fileItem> {
   name: string
   size: number
 }
 
-export function FileItem({ name, size }: FileItemProp) {
-  const state = 'error' as 'progress' | 'error' | 'complete'
+export function FileItem({ name, size, state }: FileItemProp) {
+  const { container, icon, deleteButton } = fileItem({ state })
 
   return (
-    <div
-      key={name}
-      className="group flex items-start gap-4 rounded-lg border border-zinc-200 p-4"
-    >
-      <div className="rounded-full border-4 border-violet-100 bg-violet-200 p-2 text-violet-600">
+    <div key={name} className={container()}>
+      <div className={icon()}>
         <UploadCloud className="h-4 w-4" />
       </div>
 
@@ -59,8 +84,8 @@ export function FileItem({ name, size }: FileItemProp) {
       {state === 'complete' ? (
         <CheckCircle2 className="h-5 w-5 fill-violet-600 text-white" />
       ) : (
-        <Button type="button" variant="ghost">
-          <Trash2 className="h-5 w-5 text-zinc-500" />
+        <Button type="button" variant="ghost" className={deleteButton()}>
+          <Trash2 className="h-5 w-5" />
         </Button>
       )}
     </div>
